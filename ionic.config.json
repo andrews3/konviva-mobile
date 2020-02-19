@@ -1,0 +1,7 @@
+{
+  "name": "konviva-clone",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
