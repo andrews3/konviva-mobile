@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title class="nav-title">{{curso?.title}}</ion-title>
+  </ion-navbar>
+  <div class="progress-container">
+    <div class="progress-title">Progresso</div>
+    <div class="progress">
+      <div class="progress-bar">
+        <div class="inner-bar" [ngStyle]="{'width': curso?.getPercent() + '%'}"></div>
+        <div class="percent">{{curso?.getPercent() + '%'}}</div>
+      </div>
+    </div>
+  </div>
+</ion-header>
+
+<ion-content>
+  <ion-list no-padding>
+    <ion-row *ngFor="let aula of curso?.aulas; let i = index">
+      <ion-col no-padding>
+        <ion-item-sliding #itemSliding>
+          <button ion-item>
+            <div class="aula">
+              <div class="aula-done-container">
+                <div class="aula-done-checkmark" *ngIf="aula.done">
+                  <ion-icon name="md-checkmark" color="light"></ion-icon>
+                </div>
+              </div>
+              <div class="aula-info-container">
+                <div class="aula-name">{{'Aula ' + (i + 1) + ' - ' + aula.name}}</div>
+                <div class="second-row">
+                  <div class="aula-done">{{(aula.done ? 'Concluído' : 'Em andamento')}}</div>
+                  <div class="aula-done" style="margin: 0 5px" *ngIf="aula.status === 'downloaded'">{{'-'}}</div>
+                  <ion-icon name="ios-cloud-done-outline" *ngIf="aula.status === 'downloaded'"></ion-icon>
+                </div>
+              </div>
+            </div>
+          </button>
+          <ion-item-options side="right">
+            <button class="download-btn" ion-button *ngIf="!aula.status" (click)="downloadAula(aula, itemSliding)">
+              <ion-icon name="ios-cloud-download-outline"></ion-icon>
+              Baixar
+            </button>
+            <button ion-button clear *ngIf="aula.status === 'downloading'"
+                    (click)="downloadAula(aula, itemSliding)">
+              <ion-spinner class="download-spinner" color="primary"></ion-spinner>
+              <div style="font-size: 10px; margin-top: 5px; color: dimgray">Baixando...</div>
+            </button>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-col>
+    </ion-row>
+  </ion-list>
+</ion-content>
+
+<ion-footer id="curso-footer" color="primary">
+  <div class="footer-container">
+    <div text-center margin-bottom *ngIf="!curso?.certificateSend">
+      <div text-center>Parabéns, você completou o seu curso!</div>
+      <div text-center>Clique no botão abaixo para enviar o seu certificado</div>
+    </div>
+
+    <div text-center style="margin-bottom: 10px" *ngIf="curso?.certificateSend">
+      <div text-center class="cert-send">Certificado enviado com sucesso!</div>
+    </div>
+
+    <div class="btn-footer-container">
+      <button class="button-footer" id="btn-footer">
+        <span class="submit">Enviar</span>
+        <span class="loading"><i class="fa fa-refresh"></i></span>
+        <span class="check"><i class="fa fa-check"></i></span>
+      </button>
+    </div>
+  </div>
+</ion-footer>

@@ -1,0 +1,308 @@
+page-curso-detail {
+
+  .toolbar-title {
+    color: white;
+    font-size: 15px;
+    line-height: 15px;
+    font-family: "Branding Semi Bold";
+    padding: 0 10px 0 0 !important;
+  }
+
+  .progress-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: map_get($colors, primary);
+    margin-top: -10px;
+    position: relative;
+
+    .progress-title {
+      font-family: 'Branding Medium';
+      color: white;
+    }
+  }
+
+  .progress {
+    display: flex;
+    align-items: center;
+    padding: 3px 5px 5px;
+    width: 50%;
+
+    &-bar {
+      flex: 1;
+      height: 20px;
+      padding: 2px 2px;
+      border: solid 1px gray;
+      border-radius: 20px;
+      position: relative;
+
+      .inner-bar {
+        height: 15px;
+        background-color: #2ec95c;
+        border-radius: 20px;
+        min-width: 15px;
+      }
+
+      .percent {
+        font-size: 12px;
+        position: absolute;
+        margin: auto;
+        margin-top: 1px;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+      }
+    }
+  }
+
+  .label {
+    margin: 0 !important;
+  }
+
+  .aula {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    padding: 10px 0;
+
+    &-done-container {
+      height: 20px;
+      width: 20px;
+      border-radius: 50%;
+      border: solid 1px grey;
+      padding: 1px;
+    }
+
+    .aula-done-checkmark {
+      height: 16px;
+      width: 16px;
+      background-color: #2ec95c;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      ion-icon {
+        font-size: .8em;
+      }
+    }
+
+    .aula-info-container {
+      margin-left: 12px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+
+      .aula-name {
+        font-size: 15px;
+        font-family: "Branding Semi Bold";
+        color: dimgray;
+      }
+
+      .second-row {
+        display: flex;
+
+        ion-icon {
+          font-size: 16px;
+          color: grey;
+          margin-top: 1px;
+        }
+      }
+
+      .aula-done {
+        font-size: 13px;
+        font-family: "Branding Medium";
+        color: grey;
+      }
+    }
+  }
+
+  .download-btn {
+    .icon {
+      font-size: 1.4em !important;
+      padding-bottom: 0 !important;
+    }
+  }
+
+  .download-spinner {
+    height: 20px !important;
+    width: 20px !important;
+  }
+
+  .scroll-content-no-footer {
+    margin-bottom: 0 !important;
+  }
+
+  .transition-all {
+    transition: all 1s;;
+  }
+
+  .footer-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    color: white;
+    background-color: map_get($colors, primary);
+
+    .btn-footer-container {
+      display: flex;
+      justify-content: center;
+    }
+
+    .cert-send {
+      font-family: 'Branding Bold', serif !important;
+    }
+
+    $color-3: #2ecc71;
+
+    *, *:before, *:after {
+      box-sizing: border-box;
+      outline: none;
+    }
+
+    .hide {
+      display: none;
+    }
+
+    .button-footer {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 12.5rem;
+      margin: 0;
+      padding: 1.5rem 3.125rem;
+      background-color: #3498db;
+      border: none;
+      border-radius: 0.3125rem;
+      box-shadow: 0 -1.25rem 1rem -1.5rem rgba(black, 0.4),
+      0 0.5rem 1.75rem -0.25rem rgba(black, 0.3),
+      0 1.25rem 2.5rem rgba(black, 0.2);
+      color: white;
+      font-weight: 300;
+      text-transform: uppercase;
+      overflow: hidden;
+
+      &:before {
+        position: absolute;
+        content: '';
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 100%;
+        background-color: lighten($color-3, 10%);
+      }
+
+      span {
+        position: absolute;
+        line-height: 0;
+
+        i {
+          transform-origin: center center;
+        }
+
+        &:nth-of-type(1) {
+          top: 50%;
+          transform: translateY(-50%);
+        }
+
+        &:nth-of-type(2) {
+          top: 100%;
+          transform: translateY(0%);
+          font-size: 20px;
+        }
+
+        &:nth-of-type(3) {
+          display: none;
+        }
+      }
+    }
+
+    .active {
+      background-color: $color-3;
+
+      &:before {
+        width: 100%;
+        transition: width 3s linear;
+      }
+
+      span {
+
+        &:nth-of-type(1) {
+          top: -100%;
+          transform: translateY(-50%);
+        }
+
+        &:nth-of-type(2) {
+          top: 50%;
+          transform: translateY(-50%);
+
+          i {
+            animation: loading 500ms linear infinite;
+          }
+        }
+
+        &:nth-of-type(3) {
+          display: none;
+        }
+      }
+    }
+
+    .finished {
+      background-color: lighten($color-3, 10%);
+
+      .submit {
+        display: none;
+      }
+
+      .loading {
+        display: none;
+      }
+
+      .check {
+        display: block !important;
+        font-size: 20px;
+        animation: scale 0.5s linear;
+
+        i {
+          transform-origin: center center;
+        }
+      }
+
+    }
+
+    @keyframes loading {
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes scale {
+      0% {
+        transform: scale(10);
+      }
+      50% {
+        transform: scale(0.2);
+      }
+      70% {
+        transform: scale(1.2);
+      }
+      90% {
+        transform: scale(0.7);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+  }
+
+}
+

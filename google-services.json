@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "935453696642",
+    "firebase_url": "https://konviva-ba70f.firebaseio.com",
+    "project_id": "konviva-ba70f",
+    "storage_bucket": "konviva-ba70f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:935453696642:android:ce4bb4947bf249d3c54a9b",
+        "android_client_info": {
+          "package_name": "br.com.ilog.konviva"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "935453696642-v7b28g3kb62knilvmcn7k3rhcrjuprsh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBx3lDGkkTIWVmbEgkbRnsY1bZIL2VBGnM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "935453696642-v7b28g3kb62knilvmcn7k3rhcrjuprsh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

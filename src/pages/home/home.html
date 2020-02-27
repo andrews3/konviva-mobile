@@ -1,14 +1,62 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
+  <ion-navbar color="primary">
+    <img src="assets/imgs/konviva-logo.png">
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content>
+  <ion-refresher (ionRefresh)="loadCursos($event)">
+    <ion-refresher-content
+      pullingIcon="ios-arrow-down"
+      pullingText="Atualizar"
+      refreshingSpinner="circles"
+      refreshingText="Atualizando...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <div class="cursos">
+
+    <div class="cursos-label" tappable (click)="toggleCursosContainer()">
+      <div class="text">Meus Cursos</div>
+      <button ion-button clear round icon-only class="cursos-btn">
+        <ion-icon id="cursos-arrow" name="ios-arrow-up"></ion-icon>
+      </button>
+    </div>
+
+    <div id="cursos-container" [ngStyle]="getCursosInnerHeight()">
+      <div id="inner-cursos-container">
+        <ion-slides slidesPerView="1.2" class="carroussel" spaceBetween="10" *ngIf="cursosObject.cursos">
+          <ion-slide class="cursos-card" *ngFor="let curso of cursosObject.cursos" tappable (click)="openCurso(curso)">
+            <div class="cover">
+              <img alt="Imagem capa do curso" [src]="curso.img" class="cover-img"/>
+              <div class="cover-title-container">
+                <div class="title">{{curso.title}}</div>
+              </div>
+            </div>
+
+            <div class="progress">
+              <ion-icon small name="ios-time-outline" color="grey"></ion-icon>
+              <div class="progress-date">{{curso.date | date:'dd/MM/yyyy'}}</div>
+              <div class="progress-bar">
+                <div class="inner-bar" [ngStyle]="{'width': curso.getPercent() + '%'}"></div>
+                <div class="percent"
+                     [ngStyle]="{'color': curso.getPercent() > 60 ? 'white' : 'dimgrey'}">{{curso.getPercent() + '%'}}</div>
+              </div>
+            </div>
+          </ion-slide>
+        </ion-slides>
+
+        <div class="loading-container" *ngIf="loading">
+          <ion-spinner color="grey"></ion-spinner>
+          <div ion-text color="grey">Carregando os cursos...</div>
+        </div>
+
+        <div class="loading-container" *ngIf="!loading && !cursosObject.cursos.length">
+          <div ion-text color="grey">Nenhum curso encontrado</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
 </ion-content>
